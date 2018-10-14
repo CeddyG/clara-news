@@ -1,0 +1,47 @@
+<?php
+
+namespace CeddyG\ClaraNews\Repositories;
+
+use CeddyG\QueryBuilderRepository\QueryBuilderRepository;
+
+class NewsRepository extends QueryBuilderRepository
+{
+    protected $sTable = 'news';
+
+    protected $sPrimaryKey = 'id_news';
+    
+    protected $sDateFormatToGet = 'd/m/Y';
+    
+    protected $aRelations = [
+        'news_category',
+		'users',
+		'tag'
+    ];
+
+    protected $aFillable = [
+        'fk_news_category',
+		'fk_users',
+		'title_news',
+		'url_news',
+		'text_news',
+		'url_image_news'
+    ];
+    
+   
+    public function news_category()
+    {
+        return $this->belongsTo('CeddyG\ClaraNews\Repositories\NewsCategoryRepository', 'fk_news_category');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo('App\Repositories\UsersRepository', 'fk_users');
+    }
+
+    public function tag()
+    {
+        return $this->belongsToMany('CeddyG\ClaraNews\Repositories\TagRepository', 'news_tag', 'fk_news', 'fk_tag');
+    }
+
+
+}
