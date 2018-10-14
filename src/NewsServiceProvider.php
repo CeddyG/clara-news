@@ -74,7 +74,7 @@ class NewsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/clara.page.php', 'clara.news'
+            __DIR__ . '/../config/clara.news.php', 'clara.news'
         );
         
         $this->mergeConfigFrom(
@@ -82,11 +82,11 @@ class NewsServiceProvider extends ServiceProvider
         );
         
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/clara.page-category.php', 'clara.news-category'
+            __DIR__ . '/../config/clara.news-category.php', 'clara.news-category'
         );
         
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/clara.page-category.php', 'clara.tag'
+            __DIR__ . '/../config/clara.tag.php', 'clara.tag'
         );
     }
 }
