@@ -49,7 +49,7 @@ class NewsServiceProvider extends ServiceProvider
 
         $this->publishes([
 			$sTransPath => resource_path('lang/vendor/clara-news'),
-			'clara.page.trans'
+			'clara.news.trans'
 		]);
         
 		$this->loadTranslationsFrom($sTransPath, 'clara-news');
@@ -61,7 +61,7 @@ class NewsServiceProvider extends ServiceProvider
 
         $this->publishes([
             $sResources => resource_path('views/vendor/clara-news'),
-        ], 'clara.page.views');
+        ], 'clara.news.views');
         
         $this->loadViewsFrom($sResources, 'clara-news');
 	}
