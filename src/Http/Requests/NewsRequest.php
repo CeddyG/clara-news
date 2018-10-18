@@ -39,7 +39,7 @@ class NewsRequest extends FormRequest
     {
         return [
             'id_news' => 'numeric',
-            'fk_news_category' => 'numeric',
+            'fk_news_category' => 'required|numeric',
             'fk_users' => 'numeric',
             'title_news' => 'string|max:90',
             'url_news' => 'string|max:255',
