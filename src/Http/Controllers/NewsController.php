@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace CeddyG\ClaraNews\Http\Controllers;
+
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
