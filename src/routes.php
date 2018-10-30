@@ -1,9 +1,10 @@
 <?php
 
 //News
-Route::get('news/{slug}', 'CeddyG\ClaraNews\Http\Controllers\NewsController@show');
+Route::get('news/{slug}', 'CeddyG\ClaraNews\Http\Controllers\NewsController@show')
+    ->middleware(config('clara.news.route.web-admin.middleware'));
 
-Route::group(['prefix' => config('clara.news.route.web.prefix'), 'middleware' => config('clara.news.route.web.middleware')], function()
+Route::group(['prefix' => config('clara.news.route.web-admin.prefix'), 'middleware' => config('clara.news.route.web-admin.middleware')], function()
 {
     Route::resource('news', 'CeddyG\ClaraNews\Http\Controllers\Admin\NewsController', ['names' => 'admin.news']);
 });
