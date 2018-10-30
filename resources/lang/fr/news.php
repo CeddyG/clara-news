@@ -11,13 +11,14 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'news' => 'News',
-    'fk_news_category' => 'Catégorie',
-    'fk_users' => 'Utilisateur',
-    'title_new' => 'Titre',
-    'url_news' => 'Url news',
-    'text_news' => 'Texte',
-    'url_image_news' => 'Url image',
-    'created_at' => 'Created at',
-    'updated_at' => 'Updated at'
+    'news'              => 'News',
+    'list'              => 'Liste',
+    'fk_news_category'  => 'Catégorie',
+    'fk_users'          => 'Utilisateur',
+    'title_new'         => 'Titre',
+    'url_news'          => 'Url news',
+    'text_news'         => 'Texte',
+    'url_image_news'    => 'Url image',
+    'created_at'        => 'Created at',
+    'updated_at'        => 'Updated at'
 ];

@@ -11,8 +11,8 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'tag' => 'Tag',
-    'name_tag' => 'Nom tag',
-    'created_at' => 'Created at',
-    'updated_at' => 'Updated at'
+    'tag'           => 'Etiquette',
+    'name_tag'      => 'Nom étiquette',
+    'created_at'    => 'Created at',
+    'updated_at'    => 'Updated at'
 ];

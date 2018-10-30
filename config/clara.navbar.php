@@ -3,11 +3,11 @@
 return [
     
     [
-        'News',
+        'clara-news::news.news',
         [
-            'news'          => 'List',
-            'news-category' => 'Category',
-            'tag'           => 'Tags'
+            'news'          => 'clara-news::news.list',
+            'news-category' => 'clara-news::news.fk_news_category',
+            'tag'           => 'clara-news::tag.tag'
         ]
     ]
     
