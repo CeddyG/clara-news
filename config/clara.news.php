@@ -7,7 +7,7 @@ return [
     
     'route' => [
         'web' => [
-            'middleware' => []
+            'middleware' => ['web']
         ],
         'web-admin' => [
             'prefix'    => 'admin',
