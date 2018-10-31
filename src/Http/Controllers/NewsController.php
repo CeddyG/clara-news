@@ -4,18 +4,44 @@ namespace CeddyG\ClaraNews\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use CeddyG\ClaraNews\Repositories\NewsRepository;
 
 class NewsController extends Controller
 {
+    private $oRepository;
+    
+    public function __construct(NewsRepository $oNewsRepository)
+    {
+        $this->oRepository = $oNewsRepository;
+    }
+    
     public function index()
     {
-        return view('abricot/news/index');
+        $oNews = $this->oRepository
+            ->getFillFromView('clara-news::index')
+            ->orderBy('created_at', 'desc')
+            ->all(['short_text']);
+        
+        $sBreadCrumbsTitle = 'News';
+        
+        return view('clara-news::index', compact('oNews', 'sBreadCrumbsTitle'));       
     }
 
-
-    public function show()
+    public function show($slug)
     {
-        return view('abricot/news/show');
+        $oNews = $this->oRepository
+            ->getFillFromView('clara-news::show')
+            ->findByField('url_news', $slug);
+        
+        if ($oNews !== null)
+        {
+            $oNews = $oNews->first();
+
+            return view('clara-news::show', compact('oNews'));
+        }
+        else
+        {
+            abort(404);
+        }
     }
 }

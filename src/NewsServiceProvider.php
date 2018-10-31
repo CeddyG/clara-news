@@ -3,6 +3,10 @@ namespace CeddyG\ClaraNews;
 
 use Illuminate\Support\ServiceProvider;
 
+use View;
+use CeddyG\ClaraNews\Repositories\NewsRepository;
+use CeddyG\ClaraNews\Repositories\NewsCategoryRepository;
+
 /**
  * Description of EntityServiceProvider
  *
@@ -21,6 +25,9 @@ class NewsServiceProvider extends ServiceProvider
 		$this->publishesTranslations();
         $this->loadRoutesFrom(__DIR__.'/routes.php');
 		$this->publishesView();
+        
+        $this->buildCategoriesPartial();
+        $this->buildLastNewsPartial();
     }
     
     /**
@@ -65,6 +72,33 @@ class NewsServiceProvider extends ServiceProvider
         
         $this->loadViewsFrom($sResources, 'clara-news');
 	}
+    
+    private function buildCategoriesPartial()
+    {
+        View::composer('clara-news::partials.categories', function($view)
+        {
+            $oCategoryRepository    = new NewsCategoryRepository();
+            $oCategories            = $oCategoryRepository
+                ->all(['name_news_category', 'slug_news_category']);
+            
+            $view->with('oCategories', $oCategories);
+        });
+    }
+    
+    private function buildLastNewsPartial()
+    {
+        View::composer('clara-news::partials.last-news', function($view)
+        {
+            $oRepository    = new NewsRepository();
+            $oLastNews            = $oRepository
+                ->getFillFromView('clara-news::partials.last-news')
+                ->orderBy('created_at', 'desc')
+                ->limit(0, 3)
+                ->all();
+            
+            $view->with('oLastNews', $oLastNews);
+        });
+    }
 
     /**
      * Register any application services.

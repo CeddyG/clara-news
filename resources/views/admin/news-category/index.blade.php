@@ -26,6 +26,7 @@
                 <tr>
                     <th>ID</th>
                     <th>{{ __('clara-news::news-category.name_news_category') }}</th>
+                    <th>{{ __('clara-news::news-category.slug_news_category') }}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -56,6 +57,7 @@
                 columns: [
                     { 'data': 'id_news_category' },
                     { 'data': 'name_news_category' },
+                    { 'data': 'slug_news_category' },
                     {
                         "data": "id_news_category",
                         "render": function ( data, type, row, meta ) {

@@ -42,7 +42,8 @@
                         {!! BootForm::open()->action( route('admin.news-category.store') )->post() !!}
                     @endif
 
-                        {!! BootForm::text(trans('clara-news::news-category.name_news_category'), 'name_news_category') !!}
+                    {!! BootForm::text(__('clara-news::news-category.name_news_category'), 'name_news_category') !!}
+                    {!! BootForm::text(__('clara-news::news-category.slug_news_category'), 'slug_news_category') !!}
 
                     {!! BootForm::submit('Envoyer', 'btn-primary')->addClass('pull-right') !!}
 

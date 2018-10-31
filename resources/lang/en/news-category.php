@@ -11,8 +11,9 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'news_category' => 'News category',
-    'name_news_category' => 'Name news category',
-    'created_at' => 'Created at',
-    'updated_at' => 'Updated at'
+    'news_category'         => 'News category',
+    'name_news_category'    => 'Name news category',
+    'slug_news_category'    => 'Slug news category',
+    'created_at'            => 'Created at',
+    'updated_at'            => 'Updated at'
 ];

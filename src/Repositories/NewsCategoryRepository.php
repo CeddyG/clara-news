@@ -17,14 +17,17 @@ class NewsCategoryRepository extends QueryBuilderRepository
     ];
 
     protected $aFillable = [
-        'name_news_category'
+        'name_news_category',
+        'slug_news_category'
     ];
     
-   
     public function news()
     {
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsRepository', 'fk_news_category');
     }
 
-
+    public function setSlugNewsCategoryAttribute($aInputs)
+    {
+        return str_slug($aInputs['slug_news_category']);
+    }
 }

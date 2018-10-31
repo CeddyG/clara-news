@@ -24,10 +24,11 @@ class NewsCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_news_category' => 'numeric',
-            'name_news_category' => 'string|max:45',
-            'created_at' => 'string',
-            'updated_at' => 'string'
+            'id_news_category'      => 'numeric',
+            'name_news_category'    => 'string|max:45',
+            'slug_news_category'    => 'string|max:45',
+            'created_at'            => 'string',
+            'updated_at'            => 'string'
         ];
     }
 }
