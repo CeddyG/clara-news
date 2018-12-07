@@ -75,6 +75,19 @@ class NewsRepository extends QueryBuilderRepository
     
     public function getShortTextAttribute($oItem)
     {
-        return strlen($oItem->text_news) > 120 ? substr($oItem->text_news, 0, 120).'...' : $oItem->text_news;
+        if (strlen($oItem->text_news) > 120)
+        {
+            $i = 120;
+            while ($oItem->text_news[$i] != ' ')
+            {
+                $i--;
+            }
+            
+            return substr($oItem->text_news, 0, $i).' ...';
+        }
+        else
+        {
+            return $oItem->text_news;
+        }
     }
 }
