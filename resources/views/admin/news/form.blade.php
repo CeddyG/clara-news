@@ -20,6 +20,8 @@
             color: black;
         }
     </style>
+    
+    @include('clara-library::admin.partials.css')
 @stop
 
 @section('content')
@@ -87,7 +89,8 @@
 
                         {!! BootForm::text(trans('clara-news::news.url_news'), 'url_news') !!}
                         {!! BootForm::textarea(trans('clara-news::news.text_news'), 'text_news')->addClass('ckeditor') !!}
-                        {!! BootForm::text(trans('clara-news::news.url_image_news'), 'url_image_news') !!}
+                        {!! BootForm::text(trans('clara-news::news.url_image_news'), 'url_image_news')
+							->class('form-control fileinput-element') !!}
                         
                     {!! BootForm::submit('Envoyer', 'btn-primary')->addClass('pull-right') !!}
 
@@ -99,6 +102,8 @@
             </a>
         </div>
     </div>
+
+    @include('clara-library::admin.partials.modal')
 @stop
 
 @section('JS')
@@ -146,6 +151,8 @@
             });
         } );
     </script> 
+    
+    @include('clara-library::admin.partials.script')
 
     {!! Html::script('bower_components/ckeditor/ckeditor.js') !!}
     
