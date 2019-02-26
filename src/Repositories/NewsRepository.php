@@ -77,6 +77,9 @@ class NewsRepository extends QueryBuilderRepository
     {
         if (strlen($oItem->text_news) > 120)
         {
+            $oItem->text_news = str_replace('<div>', '', $oItem->text_news);
+            $oItem->text_news = str_replace('</div>', '', $oItem->text_news);
+            
             $i = 120;
             while ($oItem->text_news[$i] != ' ')
             {
