@@ -2,7 +2,7 @@
 
 namespace CeddyG\ClaraNews\Http\Controllers\Admin;
 
-use App\Http\Controllers\ContentManagerController;
+use CeddyG\Clara\Http\Controllers\ContentManagerController;
 
 use CeddyG\ClaraNews\Repositories\NewsRepository;
 
