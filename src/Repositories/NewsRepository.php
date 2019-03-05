@@ -52,7 +52,7 @@ class NewsRepository extends QueryBuilderRepository
 
     public function users()
     {
-        return $this->belongsTo('App\Repositories\UserRepository', 'fk_users');
+        return $this->belongsTo('CeddyG\ClaraSentinel\Repositories\UserRepository', 'fk_users');
     }
 
     public function tag()
