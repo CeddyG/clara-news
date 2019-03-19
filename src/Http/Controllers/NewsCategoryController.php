@@ -21,7 +21,8 @@ class NewsCategoryController extends Controller
             ->getFillFromView('clara-news::index')
             ->findByField('slug_news_category', $slug, 
                 [
-                    'news.users.first_name', 
+                    'news.users.first_name',
+                    'news.users.last_name',  
                     'news.url_news',
                     'news.url_image_news',
                     'news.title_news',
