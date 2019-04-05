@@ -1,0 +1,1 @@
+{!! BootForm::text(__('tag-text.name_tag'), 'text['.$iIdView.'][name_tag]') !!}

@@ -42,7 +42,8 @@
                         {!! BootForm::open()->action( route('admin.tag.store') )->post() !!}
                     @endif
 
-                        {!! BootForm::text(trans('clara-news::tag.name_tag'), 'name_tag') !!}
+                        {!! BootForm::viewTabPane('clara-news::admin.tag.text', ClaraLang::getActiveLang()) !!}
+                        
                         {!! BootForm::hidden('news')->value('') !!}
                         
                         @if(isset($oItem) && !empty($oItem->news))

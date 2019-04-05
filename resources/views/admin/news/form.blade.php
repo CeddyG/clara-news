@@ -43,11 +43,9 @@
                     @else
                         {!! BootForm::open()->action( route('admin.news.store') )->post() !!}
                     @endif
-
-                        {!! BootForm::text(trans('clara-news::news.title_news'), 'title_news') !!}
                         
                         @if(isset($oItem))
-                            {!! BootForm::select(trans('clara-news::news-category.news_category'), 'fk_news_category')
+                            {!! BootForm::select(__('clara-news::news-category.news_category'), 'fk_news_category')
                                 ->class('select2')
                                 ->options([$oItem->fk_news_category => $oItem->news_category->name_news_category])
                                 ->data([
@@ -56,7 +54,7 @@
                                     'field'         => 'name_news_category'
                             ]) !!}
                         @else
-                            {!! BootForm::select(trans('clara-news::news-category.news_category'), 'fk_news_category')
+                            {!! BootForm::select(__('clara-news::news-category.news_category'), 'fk_news_category')
                                 ->class('select2')
                                 ->data([
                                     'url-select'    => route('admin.news-category.select.ajax'), 
@@ -66,7 +64,7 @@
                         @endif
 
                         @if(isset($oItem) && !empty($oItem->tag))
-                            {!! BootForm::select(trans('clara-news::tag.tag'), 'tag')
+                            {!! BootForm::select(__('clara-news::tag.tag'), 'tag')
                                 ->class('select2')
                                 ->options($oItem->tag->pluck('name_tag', 'id_tag')->toArray())
                                 ->select($oItem->tag->pluck('id_tag')->toArray())
@@ -77,7 +75,7 @@
                                     'field'         => 'name_tag'
                             ]) !!}
                         @else
-                            {!! BootForm::select(trans('clara-news::tag.tag'), 'tag')
+                            {!! BootForm::select(__('clara-news::tag.tag'), 'tag')
                                 ->class('select2')
                                 ->multiple()
                                 ->data([
@@ -87,9 +85,9 @@
                             ]) !!}
                         @endif
 
-                        {!! BootForm::text(trans('clara-news::news.url_news'), 'url_news') !!}
-                        {!! BootForm::textarea(trans('clara-news::news.text_news'), 'text_news')->addClass('ckeditor') !!}
-                        {!! BootForm::text(trans('clara-news::news.url_image_news'), 'url_image_news')
+                        {!! BootForm::viewTabPane('clara-news::admin.news.text', ClaraLang::getActiveLang()) !!}
+                        
+                        {!! BootForm::text(__('clara-news::news.url_image_news'), 'url_image_news')
 							->class('form-control fileinput-element') !!}
                         
                     {!! BootForm::submit('Envoyer', 'btn-primary')->addClass('pull-right') !!}
