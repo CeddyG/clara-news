@@ -25,7 +25,6 @@ class TagRequest extends FormRequest
     {
         return [
             'id_tag' => 'numeric',
-            'name_tag' => 'string|max:45',
             'created_at' => 'string',
             'updated_at' => 'string'
         ];

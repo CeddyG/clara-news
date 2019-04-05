@@ -4,9 +4,7 @@ namespace CeddyG\ClaraNews\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use Sentinel;
-
-class NewsRequest extends FormRequest
+class NewsCategoryTextRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,18 +15,6 @@ class NewsRequest extends FormRequest
     {
         return true;
     }
-    
-    public function all($keys = null)
-    {
-        $aAttribute = parent::all($keys);
-        
-        if (Sentinel::check())
-        {
-            $aAttribute['fk_users'] = Sentinel::getUser()->id;
-        }
-        
-        return $aAttribute;
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -38,10 +24,11 @@ class NewsRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_news' => 'numeric',
-            'fk_news_category' => 'required|numeric',
-            'fk_users' => 'numeric',
-            'url_image_news' => 'string|max:255|nullable',
+            'id_news_category_text' => 'numeric',
+            'fk_news_category' => 'numeric',
+            'fk_lang' => 'numeric',
+            'name_news_category' => 'string|max:45',
+            'slug_news_category' => 'string|max:45',
             'created_at' => 'string',
             'updated_at' => 'string'
         ];

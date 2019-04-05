@@ -4,6 +4,8 @@ namespace CeddyG\ClaraNews\Repositories;
 
 use CeddyG\QueryBuilderRepository\QueryBuilderRepository;
 
+use App;
+
 class NewsCategoryRepository extends QueryBuilderRepository
 {
     protected $sTable = 'news_category';
@@ -13,18 +15,30 @@ class NewsCategoryRepository extends QueryBuilderRepository
     protected $sDateFormatToGet = 'd/m/Y';
     
     protected $aRelations = [
-        'news'
+        'news',
+        'news_category_text',
+        'text'
     ];
 
     protected $aFillable = [
-        'name_news_category',
-        'slug_news_category'
+        
     ];
     
     public function news()
     {
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsRepository', 'fk_news_category');
     }
+
+    public function news_category_text()
+    {
+        return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsCategoryTextRepository', 'fk_news_category');
+    }
+    
+    public function text()
+    {
+        return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsCategoryTextRepository', 'fk_news_category', [['fk_lang', '=', App::getLocale()]]);
+    }
+
 
     public function setSlugNewsCategoryAttribute($aInputs)
     {

@@ -4,6 +4,8 @@ namespace CeddyG\ClaraNews\Repositories;
 
 use CeddyG\QueryBuilderRepository\QueryBuilderRepository;
 
+use App;
+
 class NewsRepository extends QueryBuilderRepository
 {
     protected $sTable = 'news';
@@ -17,28 +19,16 @@ class NewsRepository extends QueryBuilderRepository
     protected $aRelations = [
         'news_category',
 		'users',
-		'tag'
+		'tag',
+		'news_text',
+		'text'
     ];
 
     protected $aFillable = [
         'fk_news_category',
 		'fk_users',
-		'title_news',
-		'url_news',
-		'text_news',
 		'url_image_news',
         'created_at'
-    ];
-    
-    /**
-     * List of the customs attributes.
-     * 
-     * @var array
-     */
-    protected $aCustomAttribute = [
-        'short_text' => [
-            'text_news'
-        ]
     ];
     
     /**
@@ -59,38 +49,14 @@ class NewsRepository extends QueryBuilderRepository
     {
         return $this->belongsToMany('CeddyG\ClaraNews\Repositories\TagRepository', 'news_tag', 'fk_news', 'fk_tag');
     }
-    
-    /**
-     * Custom setter 
-     */
-    
-    public function setUrlNewsAttribute($aInputs)
+
+    public function news_text()
     {
-        return str_slug($aInputs['url_news']);
+        return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsTextRepository', 'fk_news');
     }
-    
-    /**
-     * Custom getter
-     */
-    
-    public function getShortTextAttribute($oItem)
+
+    public function text()
     {
-        if (strlen($oItem->text_news) > 120)
-        {
-            $oItem->text_news = str_replace('<div>', '', $oItem->text_news);
-            $oItem->text_news = str_replace('</div>', '', $oItem->text_news);
-            
-            $i = 120;
-            while ($oItem->text_news[$i] != ' ')
-            {
-                $i--;
-            }
-            
-            return substr($oItem->text_news, 0, $i).' ...';
-        }
-        else
-        {
-            return $oItem->text_news;
-        }
+        return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsTextRepository', 'fk_news', [['fk_lang', '=', App::getLocale()]]);
     }
 }

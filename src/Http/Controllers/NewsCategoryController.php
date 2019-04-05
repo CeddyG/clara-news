@@ -5,35 +5,39 @@ namespace CeddyG\ClaraNews\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 use CeddyG\ClaraNews\Repositories\NewsCategoryRepository;
+use CeddyG\ClaraNews\Repositories\NewsCategoryTextRepository;
 
 class NewsCategoryController extends Controller
 {
     private $oRepository;
+    private $oRepositoryText;
     
-    public function __construct(NewsCategoryRepository $oNewsCategoryRepository)
+    public function __construct(NewsCategoryRepository $oNewsCategoryRepository, NewsCategoryTextRepository $oNewsCategoryTextRepository)
     {
-        $this->oRepository = $oNewsCategoryRepository;
+        $this->oRepository      = $oNewsCategoryRepository;
+        $this->oRepositoryText = $oNewsCategoryTextRepository;
     }
 
     public function show($slug)
     {
-        $oCategory = $this->oRepository
-            ->getFillFromView('clara-news::index')
-            ->findByField('slug_news_category', $slug, 
-                [
-                    'news.users.first_name',
-                    'news.users.last_name',  
-                    'news.url_news',
-                    'news.url_image_news',
-                    'news.title_news',
-                    'news.short_text',
-                    'news.created_at'
-                ]
-            );
+        $oText = $this->oRepositoryText
+            ->findByField('slug_news_category', $slug, ['fk_news_category']);        
         
-        if ($oCategory !== null)
+        if ($oText !== null)
         {
-            $oCategory = $oCategory->first();
+            $oCategory = $this->oRepository
+                ->getFillFromView('clara-news::index')
+                ->find($oText->first()->fk_news_category, 
+                    [
+                        'news.users.first_name',
+                        'news.users.last_name',  
+                        'news.url_image_news',
+                        'news.text.title_news',
+                        'news.text.short_text',
+                        'news.text.url_news',
+                        'news.created_at'
+                    ]
+                );
             
             //Get the news
             $oNews = $oCategory->news->map(function ($oItem, $iKey) use ($oCategory) {

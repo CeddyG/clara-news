@@ -8,6 +8,12 @@ use CeddyG\ClaraNews\Repositories\NewsRepository;
 
 class NewsController extends ContentManagerController
 {
+    protected $sEventBeforeStore    = CeddyG\ClaraNews\Events\News\BeforeStoreEvent::class;
+    protected $sEventAfterStore     = CeddyG\ClaraNews\Events\News\AfterStoreEvent::class;
+    protected $sEventBeforeUpdate   = CeddyG\ClaraNews\Events\News\BeforeUpdateEvent::class;
+    protected $sEventAfterUpdate    = CeddyG\ClaraNews\Events\News\AfterUpdateEvent::class;
+    protected $sEventBeforeDestroy  = CeddyG\ClaraNews\Events\News\BeforeDestroyEvent::class;
+    
     public function __construct(NewsRepository $oRepository)
     {
         $this->sPath            = 'clara-news::admin.news';

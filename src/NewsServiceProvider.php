@@ -4,6 +4,10 @@ namespace CeddyG\ClaraNews;
 use Illuminate\Support\ServiceProvider;
 
 use View;
+use Event;
+use CeddyG\ClaraNews\Listeners\TagTextSubscriber;
+use CeddyG\ClaraNews\Listeners\NewsTextSubscriber;
+use CeddyG\ClaraNews\Listeners\NewsCategoryTextSubscriber;
 use CeddyG\ClaraNews\Repositories\NewsRepository;
 use CeddyG\ClaraNews\Repositories\NewsCategoryRepository;
 
@@ -28,6 +32,10 @@ class NewsServiceProvider extends ServiceProvider
         
         $this->buildCategoriesPartial();
         $this->buildLastNewsPartial();
+        
+        Event::subscribe(TagTextSubscriber::class);
+        Event::subscribe(NewsTextSubscriber::class);
+        Event::subscribe(NewsCategoryTextSubscriber::class);
     }
     
     /**

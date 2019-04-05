@@ -4,6 +4,8 @@ namespace CeddyG\ClaraNews\Repositories;
 
 use CeddyG\QueryBuilderRepository\QueryBuilderRepository;
 
+use App;
+
 class TagRepository extends QueryBuilderRepository
 {
     protected $sTable = 'tag';
@@ -13,11 +15,13 @@ class TagRepository extends QueryBuilderRepository
     protected $sDateFormatToGet = 'd/m/Y';
     
     protected $aRelations = [
-        'news'
+        'news',
+        'tag_text',
+        'text'
     ];
 
     protected $aFillable = [
-        'name_tag'
+        
     ];
     
    
@@ -26,5 +30,13 @@ class TagRepository extends QueryBuilderRepository
         return $this->belongsToMany('CeddyG\ClaraNews\Repositories\NewsRepository', 'news_tag', 'fk_tag', 'fk_news');
     }
 
+    public function tag_text()
+    {
+        return $this->hasMany('CeddyG\ClaraNews\Repositories\TagTextRepository', 'fk_tag');
+    }
 
+    public function text()
+    {
+        return $this->hasMany('CeddyG\ClaraNews\Repositories\TagTextRepository', 'fk_tag', [['fk_lang', '=', App::getLocale()]]);
+    }
 }
