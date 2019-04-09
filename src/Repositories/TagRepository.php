@@ -21,7 +21,7 @@ class TagRepository extends QueryBuilderRepository
     ];
 
     protected $aFillable = [
-        
+        'id_tag'
     ];
     
     protected $bTimestamp = true;    

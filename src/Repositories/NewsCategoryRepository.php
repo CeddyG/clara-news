@@ -21,7 +21,7 @@ class NewsCategoryRepository extends QueryBuilderRepository
     ];
 
     protected $aFillable = [
-        
+        'id_news_category'
     ];
     
     protected $bTimestamp = true;
