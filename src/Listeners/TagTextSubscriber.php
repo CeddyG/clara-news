@@ -20,14 +20,20 @@ class TagTextSubscriber
 
     public function store($oEvent) 
     {
-        $aInputs = $oEvent->aInput->text;
+        $aInputs = $oEvent->aInputs['tag_text'];
         
         foreach ($aInputs as $iIdLang => $aInput)
         {
             $aInput['fk_lang']  = $iIdLang;
             $aInput['fk_tag']   = $oEvent->id;
             
-            $this->oRepository->updateOrCreate(['fk_lang', 'fk_tag'], $oEvent->aInput);
+            $this->oRepository->updateOrCreate(
+                [
+                    ['fk_lang', '=', $iIdLang],
+                    ['fk_tag', '=', $oEvent->id]
+                ], 
+                $aInput
+            );
         }        
     }
     

@@ -33,7 +33,9 @@ class NewsTextRepository extends QueryBuilderRepository
         'short_text' => [
             'text_news'
         ]
-    ];    
+    ]; 
+    
+    protected $bTimestamp = true;   
    
     public function news()
     {

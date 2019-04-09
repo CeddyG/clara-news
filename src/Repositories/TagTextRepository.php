@@ -22,6 +22,7 @@ class TagTextRepository extends QueryBuilderRepository
         'name_tag'
     ];
     
+    protected $bTimestamp = true;    
    
     public function tag()
     {

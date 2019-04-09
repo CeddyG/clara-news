@@ -1,1 +1,1 @@
-{!! BootForm::text(__('tag-text.name_tag'), 'text['.$iIdView.'][name_tag]') !!}
+{!! BootForm::text(__('clara-news::tag.name_tag'), 'tag_text['.$iIdView.'][name_tag]') !!}

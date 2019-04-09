@@ -24,6 +24,8 @@ class NewsCategoryRepository extends QueryBuilderRepository
         
     ];
     
+    protected $bTimestamp = true;
+    
     public function news()
     {
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsRepository', 'fk_news_category');

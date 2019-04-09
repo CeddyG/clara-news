@@ -23,6 +23,7 @@ class NewsCategoryTextRepository extends QueryBuilderRepository
         'slug_news_category'
     ];
     
+    protected $bTimestamp = true;    
    
     public function news_category()
     {

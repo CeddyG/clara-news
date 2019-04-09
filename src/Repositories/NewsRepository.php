@@ -31,6 +31,8 @@ class NewsRepository extends QueryBuilderRepository
         'created_at'
     ];
     
+    protected $bTimestamp = true;
+    
     /**
      * Relations
      */

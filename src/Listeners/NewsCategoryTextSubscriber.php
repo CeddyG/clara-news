@@ -20,14 +20,20 @@ class NewsCategoryTextSubscriber
 
     public function store($oEvent) 
     {
-        $aInputs = $oEvent->aInput->text;
+        $aInputs = $oEvent->aInputs['news_category_text'];
         
         foreach ($aInputs as $iIdLang => $aInput)
         {
-            $aInput['fk_lang']          = $iIdLang;
-            $aInput['fk_news_category'] = $oEvent->id;
+            $aInput['fk_lang']  = $iIdLang;
+            $aInput['fk_news_category']   = $oEvent->id;
             
-            $this->oRepository->updateOrCreate(['fk_lang', 'fk_news_category'], $oEvent->aInput);
+            $this->oRepository->updateOrCreate(
+                [
+                    ['fk_lang', '=', $iIdLang],
+                    ['fk_news_category', '=', $oEvent->id]
+                ], 
+                $aInput
+            );
         }
     }
     

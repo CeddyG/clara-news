@@ -36,6 +36,8 @@
                 </div>
                 <div class="box-body"> 
                     @if(isset($oItem))
+                        @php $oItem->tag_text = $oItem->tag_text->keyBy('fk_lang')->toArray() @endphp
+                        
                         {!! BootForm::open()->action( route('admin.tag.update', $oItem->id_tag) )->put() !!}
                         {!! BootForm::bind($oItem) !!}
                     @else

@@ -24,6 +24,7 @@ class TagRepository extends QueryBuilderRepository
         
     ];
     
+    protected $bTimestamp = true;    
    
     public function news()
     {

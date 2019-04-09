@@ -36,6 +36,8 @@
                 </div>
                 <div class="box-body"> 
                     @if(isset($oItem))
+                        @php $oItem->news_category_text = $oItem->news_category_text->keyBy('fk_lang')->toArray() @endphp
+                        
                         {!! BootForm::open()->action( route('admin.news-category.update', $oItem->id_news_category) )->put() !!}
                         {!! BootForm::bind($oItem) !!}
                     @else

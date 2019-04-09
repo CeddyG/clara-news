@@ -38,6 +38,8 @@
                 </div>
                 <div class="box-body"> 
                     @if(isset($oItem))
+                        @php $oItem->news_text = $oItem->news_text->keyBy('fk_lang')->toArray() @endphp
+                        
                         {!! BootForm::open()->action( route('admin.news.update', $oItem->id_news) )->put() !!}
                         {!! BootForm::bind($oItem) !!}
                     @else

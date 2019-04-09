@@ -1,2 +1,2 @@
-{!! BootForm::text(__('news-category-text.name_news_category'), 'text['.$iIdView.'][name_news_category]') !!}
-{!! BootForm::text(__('news-category-text.slug_news_category'), 'text['.$iIdView.'][slug_news_category]') !!}
+{!! BootForm::text(__('clara-news::news-category.name_news_category'), 'news_category_text['.$iIdView.'][name_news_category]') !!}
+{!! BootForm::text(__('clara-news::news-category.slug_news_category'), 'news_category_text['.$iIdView.'][slug_news_category]') !!}

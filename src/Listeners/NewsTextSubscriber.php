@@ -20,15 +20,21 @@ class NewsTextSubscriber
 
     public function store($oEvent) 
     {
-        $aInputs = $oEvent->aInput->text;
+        $aInputs = $oEvent->aInputs['news_text'];
         
         foreach ($aInputs as $iIdLang => $aInput)
         {
             $aInput['fk_lang']  = $iIdLang;
-            $aInput['fk_news']  = $oEvent->id;
+            $aInput['fk_news']   = $oEvent->id;
             
-            $this->oRepository->updateOrCreate(['fk_lang', 'fk_news'], $oEvent->aInput);
-        }        
+            $this->oRepository->updateOrCreate(
+                [
+                    ['fk_lang', '=', $iIdLang],
+                    ['fk_news', '=', $oEvent->id]
+                ], 
+                $aInput
+            );
+        }
     }
     
     public function delete($oEvent)
