@@ -57,7 +57,7 @@
                                 ->data([
                                     'url-select'    => route('admin.news.select.ajax'), 
                                     'url-create'    => route('admin.news.create'),
-                                    'field'         => 'title_news'
+                                    'field'         => 'text.title_news'
                             ]) !!}
                         @else
                             {!! BootForm::select(trans('clara-news::news.news'), 'news')
@@ -65,7 +65,7 @@
                                 ->data([
                                     'url-select'    => route('admin.news.select.ajax'), 
                                     'url-create'    => route('admin.news.create'),
-                                    'field'         => 'title_news'
+                                    'field'         => 'text.title_news'
                             ]) !!}
                         @endif
 

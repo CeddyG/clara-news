@@ -53,7 +53,7 @@
                                 ->data([
                                     'url-select'    => route('admin.news-category.select.ajax'), 
                                     'url-create'    => route('admin.news-category.create'),
-                                    'field'         => 'name_news_category'
+                                    'field'         => 'text.name_news_category'
                             ]) !!}
                         @else
                             {!! BootForm::select(__('clara-news::news-category.news_category'), 'fk_news_category')
@@ -61,7 +61,7 @@
                                 ->data([
                                     'url-select'    => route('admin.news-category.select.ajax'), 
                                     'url-create'    => route('admin.news-category.create'),
-                                    'field'         => 'name_news_category'
+                                    'field'         => 'text.name_news_category'
                             ]) !!}
                         @endif
 
@@ -74,7 +74,7 @@
                                 ->data([
                                     'url-select'    => route('admin.tag.select.ajax'), 
                                     'url-create'    => route('admin.tag.create'),
-                                    'field'         => 'name_tag'
+                                    'field'         => 'text.name_tag'
                             ]) !!}
                         @else
                             {!! BootForm::select(__('clara-news::tag.tag'), 'tag')
@@ -83,7 +83,7 @@
                                 ->data([
                                     'url-select'    => route('admin.tag.select.ajax'), 
                                     'url-create'    => route('admin.tag.create'),
-                                    'field'         => 'name_tag'
+                                    'field'         => 'text.name_tag'
                             ]) !!}
                         @endif
 
