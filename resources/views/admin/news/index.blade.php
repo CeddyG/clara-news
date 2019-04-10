@@ -61,7 +61,7 @@
                         'name': 'text.title_news'
                     },
 					{ 
-                        'data': 'text_title_news',
+                        'data': 'text_url_news',
                         'name': 'text.url_news'
                     },
                     {
