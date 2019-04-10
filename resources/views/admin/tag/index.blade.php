@@ -55,7 +55,10 @@
                 },
                 columns: [
                     { 'data': 'id_tag' },
-                    { 'data': 'text.name_tag' },
+                    { 
+                        'data': 'text_name_tag',
+                        'name': 'text.name_tag'
+                    },
                     {
                         "data": "id_tag",
                         "render": function ( data, type, row, meta ) {

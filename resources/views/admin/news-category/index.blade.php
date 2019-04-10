@@ -56,8 +56,14 @@
                 },
                 columns: [
                     { 'data': 'id_news_category' },
-                    { 'data': 'text.name_news_category' },
-                    { 'data': 'text.slug_news_category' },
+                    { 
+                        'name': 'text_name_news_category',
+                        'data': 'text.name_news_category'
+                    },
+                    { 
+                        'name': 'text_slug_news_category',
+                        'data': 'text.slug_news_category'
+                    },
                     {
                         "data": "id_news_category",
                         "render": function ( data, type, row, meta ) {

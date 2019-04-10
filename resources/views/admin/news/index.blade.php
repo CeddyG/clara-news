@@ -56,8 +56,14 @@
                 },
                 columns: [
                     { 'data': 'id_news' },
-                    { 'data': 'text.title_news' },
-					{ 'data': 'text.url_news' },
+                    { 
+                        'data': 'text_title_news'
+                        'name': 'text.title_news'
+                    },
+					{ 
+                        'data': 'text_title_news'
+                        'name': 'text.url_news'
+                    },
                     {
                         "data": "id_news",
                         "render": function ( data, type, row, meta ) {
