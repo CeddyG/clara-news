@@ -5,6 +5,7 @@ namespace CeddyG\ClaraNews\Repositories;
 use CeddyG\QueryBuilderRepository\QueryBuilderRepository;
 
 use App;
+use ClaraLang;
 
 class NewsRepository extends QueryBuilderRepository
 {
@@ -59,6 +60,6 @@ class NewsRepository extends QueryBuilderRepository
 
     public function text()
     {
-        return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsTextRepository', 'fk_news', [['fk_lang', '=', App::getLocale()]]);
+        return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsTextRepository', 'fk_news', [['fk_lang', '=', ClaraLang::getIdByCode(App::getLocale())]]);
     }
 }

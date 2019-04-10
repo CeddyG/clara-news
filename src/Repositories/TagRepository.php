@@ -5,6 +5,7 @@ namespace CeddyG\ClaraNews\Repositories;
 use CeddyG\QueryBuilderRepository\QueryBuilderRepository;
 
 use App;
+use ClaraLang;
 
 class TagRepository extends QueryBuilderRepository
 {
@@ -38,6 +39,6 @@ class TagRepository extends QueryBuilderRepository
 
     public function text()
     {
-        return $this->hasMany('CeddyG\ClaraNews\Repositories\TagTextRepository', 'fk_tag', [['fk_lang', '=', App::getLocale()]]);
+        return $this->hasMany('CeddyG\ClaraNews\Repositories\TagTextRepository', 'fk_tag', [['fk_lang', '=', ClaraLang::getIdByCode(App::getLocale())]]);
     }
 }
