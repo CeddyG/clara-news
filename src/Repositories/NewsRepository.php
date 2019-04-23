@@ -32,6 +32,17 @@ class NewsRepository extends QueryBuilderRepository
         'created_at'
     ];
     
+    /**
+     * List of the customs attributes.
+     * 
+     * @var array
+     */
+    protected $aCustomAttribute = [
+        'title_news' => [
+            'text.title_news'
+        ]
+    ];
+    
     protected $bTimestamp = true;
     
     /**
@@ -61,5 +72,10 @@ class NewsRepository extends QueryBuilderRepository
     public function text()
     {
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsTextRepository', 'fk_news', [['fk_lang', '=', ClaraLang::getIdByCode(App::getLocale())]]);
+    }
+    
+    public function getTitleNewsAttribute($oItem)
+    {
+        return $oItem->text->first()->title_news;
     }
 }

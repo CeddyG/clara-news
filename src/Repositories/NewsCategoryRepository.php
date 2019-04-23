@@ -25,6 +25,17 @@ class NewsCategoryRepository extends QueryBuilderRepository
         'id_news_category'
     ];
     
+    /**
+     * List of the customs attributes.
+     * 
+     * @var array
+     */
+    protected $aCustomAttribute = [
+        'title_news_category' => [
+            'text.name_news_category'
+        ]
+    ];
+    
     protected $bTimestamp = true;
     
     public function news()
@@ -46,5 +57,10 @@ class NewsCategoryRepository extends QueryBuilderRepository
     public function setSlugNewsCategoryAttribute($aInputs)
     {
         return str_slug($aInputs['slug_news_category']);
+    }
+    
+    public function getTitleNewsCategoryAttribute($oItem)
+    {
+        return $oItem->text->first()->name_news_category;
     }
 }

@@ -49,7 +49,7 @@
                         @if(isset($oItem))
                             {!! BootForm::select(__('clara-news::news-category.news_category'), 'fk_news_category')
                                 ->class('select2')
-                                ->options([$oItem->fk_news_category => $oItem->news_category->name_news_category])
+                                ->options([$oItem->fk_news_category => $oItem->news_category->title_news_category])
                                 ->data([
                                     'url-select'    => route('admin.news-category.select.ajax'), 
                                     'url-create'    => route('admin.news-category.create'),
@@ -68,7 +68,7 @@
                         @if(isset($oItem) && !empty($oItem->tag))
                             {!! BootForm::select(__('clara-news::tag.tag'), 'tag')
                                 ->class('select2')
-                                ->options($oItem->tag->pluck('name_tag', 'id_tag')->toArray())
+                                ->options($oItem->tag->pluck('title_tag', 'id_tag')->toArray())
                                 ->select($oItem->tag->pluck('id_tag')->toArray())
                                 ->multiple()
                                 ->data([

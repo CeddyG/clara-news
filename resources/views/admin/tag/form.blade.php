@@ -1,5 +1,5 @@
 @extends('admin/dashboard')
-
+                      
 @section('CSS')
     <!-- Select 2 -->
     {!! Html::style('bower_components/select2/dist/css/select2.min.css') !!}
@@ -62,6 +62,7 @@
                         @else
                             {!! BootForm::select(trans('clara-news::news.news'), 'news')
                                 ->class('select2')
+                                ->multiple()
                                 ->data([
                                     'url-select'    => route('admin.news.select.ajax'), 
                                     'url-create'    => route('admin.news.create'),

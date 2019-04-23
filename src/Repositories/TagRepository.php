@@ -25,6 +25,17 @@ class TagRepository extends QueryBuilderRepository
         'id_tag'
     ];
     
+    /**
+     * List of the customs attributes.
+     * 
+     * @var array
+     */
+    protected $aCustomAttribute = [
+        'title_tag' => [
+            'text.name_tag'
+        ]
+    ];
+    
     protected $bTimestamp = true;    
    
     public function news()
@@ -40,5 +51,10 @@ class TagRepository extends QueryBuilderRepository
     public function text()
     {
         return $this->hasMany('CeddyG\ClaraNews\Repositories\TagTextRepository', 'fk_tag', [['fk_lang', '=', ClaraLang::getIdByCode(App::getLocale())]]);
+    }
+    
+    public function getTitleTagAttribute($oItem)
+    {
+        return $oItem->text->first()->name_tag;
     }
 }
