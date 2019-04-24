@@ -71,7 +71,7 @@ class NewsTextSubscriber
         
         $oEvent->listen(
             'CeddyG\ClaraNews\Events\News\BeforeDestroyEvent',
-            'CeddyG\ClaraNews\Listeners\NewsTextSubscriber@validate'
+            'CeddyG\ClaraNews\Listeners\NewsTextSubscriber@delete'
         );
     }
 }

@@ -71,7 +71,7 @@ class TagTextSubscriber
         
         $oEvent->listen(
             'CeddyG\ClaraNews\Events\Tag\BeforeDestroyEvent',
-            'CeddyG\ClaraNews\Listeners\TagTextSubscriber@validate'
+            'CeddyG\ClaraNews\Listeners\TagTextSubscriber@delete'
         );
     }
 }
