@@ -5,6 +5,7 @@ use Illuminate\Support\ServiceProvider;
 
 use View;
 use Event;
+use CeddyG\ClaraNews\Listeners\NewsSubscriber;
 use CeddyG\ClaraNews\Listeners\TagTextSubscriber;
 use CeddyG\ClaraNews\Listeners\NewsTextSubscriber;
 use CeddyG\ClaraNews\Listeners\NewsCategoryTextSubscriber;
@@ -33,6 +34,7 @@ class NewsServiceProvider extends ServiceProvider
         $this->buildCategoriesPartial();
         $this->buildLastNewsPartial();
         
+        Event::subscribe(NewsSubscriber::class);
         Event::subscribe(TagTextSubscriber::class);
         Event::subscribe(NewsTextSubscriber::class);
         Event::subscribe(NewsCategoryTextSubscriber::class);
