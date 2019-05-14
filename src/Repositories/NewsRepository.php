@@ -74,8 +74,41 @@ class NewsRepository extends QueryBuilderRepository
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsTextRepository', 'fk_news', [['fk_lang', '=', ClaraLang::getIdByCode(App::getLocale())]]);
     }
     
+    /**
+     * Custom setter 
+     */
+    
+    public function setUrlNewsAttribute($aInputs)
+    {
+        return str_slug($aInputs['url_news']);
+    }
+    
+    /**
+     * Custom getter
+     */
+    
     public function getTitleNewsAttribute($oItem)
     {
         return $oItem->text->first()->title_news;
+    }
+    
+    public function getShortTextAttribute($oItem)
+    {
+        if (strlen($oItem->text_news) > 120)
+        {
+            $oItem->text_news = strip_tags($oItem->text_news);
+            
+            $i = 120;
+            while ($oItem->text_news[$i] != ' ')
+            {
+                $i--;
+            }
+            
+            return substr($oItem->text_news, 0, $i).' ...';
+        }
+        else
+        {
+            return $oItem->text_news;
+        }
     }
 }
