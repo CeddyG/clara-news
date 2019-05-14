@@ -94,21 +94,21 @@ class NewsRepository extends QueryBuilderRepository
     
     public function getShortTextAttribute($oItem)
     {
-        if (strlen($oItem->text_news) > 120)
+        if (strlen($oItem->text->first()->text_news) > 120)
         {
-            $oItem->text_news = strip_tags($oItem->text_news);
+            $oItem->text->first()->text_news = strip_tags($oItem->text->first()->text_news);
             
             $i = 120;
-            while ($oItem->text_news[$i] != ' ')
+            while ($oItem->text->first()->text_news[$i] != ' ')
             {
                 $i--;
             }
             
-            return substr($oItem->text_news, 0, $i).' ...';
+            return substr($oItem->text->first()->text_news, 0, $i).' ...';
         }
         else
         {
-            return $oItem->text_news;
+            return $oItem->text->first()->text_news;
         }
     }
 }
