@@ -58,11 +58,11 @@
                     { 'data': 'id_news_category' },
                     { 
                         'data': 'text_name_news_category',
-                        'name': 'text.name_news_category'
+                        'name': 'news_category_trans.name_news_category'
                     },
                     { 
                         'data': 'text_slug_news_category',
-                        'name': 'text.slug_news_category'
+                        'name': 'news_category_trans.slug_news_category'
                     },
                     {
                         "data": "id_news_category",

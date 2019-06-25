@@ -18,7 +18,7 @@ class NewsCategoryRepository extends QueryBuilderRepository
     protected $aRelations = [
         'news',
         'news_category_text',
-        'text'
+        'news_category_trans'
     ];
 
     protected $aFillable = [
@@ -32,7 +32,7 @@ class NewsCategoryRepository extends QueryBuilderRepository
      */
     protected $aCustomAttribute = [
         'title_news_category' => [
-            'text.name_news_category'
+            'news_category_trans.name_news_category'
         ]
     ];
     
@@ -48,7 +48,7 @@ class NewsCategoryRepository extends QueryBuilderRepository
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsCategoryTextRepository', 'fk_news_category');
     }
     
-    public function text()
+    public function news_category_trans()
     {
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsCategoryTextRepository', 'fk_news_category', [['fk_lang', '=', ClaraLang::getIdByCode(App::getLocale())]]);
     }
@@ -61,6 +61,6 @@ class NewsCategoryRepository extends QueryBuilderRepository
     
     public function getTitleNewsCategoryAttribute($oItem)
     {
-        return $oItem->text->first()->name_news_category;
+        return $oItem->news_category_trans->first()->name_news_category;
     }
 }

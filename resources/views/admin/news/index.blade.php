@@ -58,11 +58,11 @@
                     { 'data': 'id_news' },
                     { 
                         'data': 'text_title_news',
-                        'name': 'text.title_news'
+                        'name': 'news_trans.title_news'
                     },
 					{ 
                         'data': 'text_url_news',
-                        'name': 'text.url_news'
+                        'name': 'news_trans.url_news'
                     },
                     {
                         "data": "id_news",

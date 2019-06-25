@@ -57,7 +57,7 @@
                     { 'data': 'id_tag' },
                     { 
                         'data': 'text_name_tag',
-                        'name': 'text.name_tag'
+                        'name': 'tag_trans.name_tag'
                     },
                     {
                         "data": "id_tag",

@@ -22,7 +22,7 @@ class NewsRepository extends QueryBuilderRepository
 		'users',
 		'tag',
 		'news_text',
-		'text'
+		'news_trans'
     ];
 
     protected $aFillable = [
@@ -39,7 +39,10 @@ class NewsRepository extends QueryBuilderRepository
      */
     protected $aCustomAttribute = [
         'title_news' => [
-            'text.title_news'
+            'news_trans.title_news'
+        ],
+        'short_text' => [
+            'news_trans.text_news'
         ]
     ];
     
@@ -69,7 +72,7 @@ class NewsRepository extends QueryBuilderRepository
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsTextRepository', 'fk_news');
     }
 
-    public function text()
+    public function news_trans()
     {
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsTextRepository', 'fk_news', [['fk_lang', '=', ClaraLang::getIdByCode(App::getLocale())]]);
     }
@@ -89,26 +92,26 @@ class NewsRepository extends QueryBuilderRepository
     
     public function getTitleNewsAttribute($oItem)
     {
-        return $oItem->text->first()->title_news;
+        return $oItem->news_trans->first()->title_news;
     }
     
     public function getShortTextAttribute($oItem)
     {
-        if (strlen($oItem->text->first()->text_news) > 120)
+        if (strlen($oItem->news_trans->first()->text_news) > 120)
         {
-            $oItem->text->first()->text_news = strip_tags($oItem->text->first()->text_news);
+            $oItem->news_trans->first()->text_news = strip_tags($oItem->news_trans->first()->text_news);
             
             $i = 120;
-            while ($oItem->text->first()->text_news[$i] != ' ')
+            while ($oItem->news_trans->first()->text_news[$i] != ' ')
             {
                 $i--;
             }
             
-            return substr($oItem->text->first()->text_news, 0, $i).' ...';
+            return substr($oItem->news_trans->first()->text_news, 0, $i).' ...';
         }
         else
         {
-            return $oItem->text->first()->text_news;
+            return $oItem->news_trans->first()->text_news;
         }
     }
 }

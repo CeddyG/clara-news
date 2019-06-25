@@ -18,7 +18,7 @@ class TagRepository extends QueryBuilderRepository
     protected $aRelations = [
         'news',
         'tag_text',
-        'text'
+        'tag_trans'
     ];
 
     protected $aFillable = [
@@ -32,7 +32,7 @@ class TagRepository extends QueryBuilderRepository
      */
     protected $aCustomAttribute = [
         'title_tag' => [
-            'text.name_tag'
+            'tag_trans.name_tag'
         ]
     ];
     
@@ -48,13 +48,13 @@ class TagRepository extends QueryBuilderRepository
         return $this->hasMany('CeddyG\ClaraNews\Repositories\TagTextRepository', 'fk_tag');
     }
 
-    public function text()
+    public function tag_trans()
     {
         return $this->hasMany('CeddyG\ClaraNews\Repositories\TagTextRepository', 'fk_tag', [['fk_lang', '=', ClaraLang::getIdByCode(App::getLocale())]]);
     }
     
     public function getTitleTagAttribute($oItem)
     {
-        return $oItem->text->first()->name_tag;
+        return $oItem->tag_trans->first()->name_tag;
     }
 }

@@ -23,7 +23,7 @@ class NewsController extends Controller
         $oNews = $this->oRepository
             ->getFillFromView('clara-news::index')
             ->orderBy('created_at', 'desc')
-            ->all(['text.short_text']);
+            ->all(['short_text', 'news_category.title_news_category', 'news_trans.url_news', 'title_news']);
         
         $sBreadCrumbsTitle = 'News';
         
@@ -35,12 +35,18 @@ class NewsController extends Controller
         $oText = $this->oRepositoryText
             ->findByField('url_news', $slug, ['fk_news']);
         
-        
-        if ($oText !== null)
+        if ($oText->isNotEmpty())
         {
             $oNews = $this->oRepository
                 ->getFillFromView('clara-news::show')
-                ->find($oText->first()->fk_news);
+                ->find(
+                    $oText->first()->fk_news, 
+                    [
+                        'title_news',
+                        'news_trans.text_news',
+                        'news_category.title_news_category'
+                    ]
+            );
 
             return view('clara-news::show', compact('oNews'));
         }

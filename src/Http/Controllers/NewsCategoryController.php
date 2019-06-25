@@ -29,12 +29,13 @@ class NewsCategoryController extends Controller
                 ->getFillFromView('clara-news::index')
                 ->find($oText->first()->fk_news_category, 
                     [
+                        'title_news_category',
                         'news.users.first_name',
                         'news.users.last_name',  
                         'news.url_image_news',
-                        'news.text.title_news',
-                        'news.text.short_text',
-                        'news.text.url_news',
+                        'news.title_news',
+                        'news.short_text',
+                        'news.news_trans.url_news',
                         'news.created_at'
                     ]
                 );
