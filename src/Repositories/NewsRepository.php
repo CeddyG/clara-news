@@ -99,15 +99,15 @@ class NewsRepository extends QueryBuilderRepository
     {
         if (strlen($oItem->news_trans->first()->text_news) > 120)
         {
-            $oItem->news_trans->first()->text_news = strip_tags($oItem->news_trans->first()->text_news);
+            $sShortText = strip_tags($oItem->news_trans->first()->text_news);
             
             $i = 120;
-            while ($oItem->news_trans->first()->text_news[$i] != ' ')
+            while ($sShortText[$i] != ' ')
             {
                 $i--;
             }
             
-            return substr($oItem->news_trans->first()->text_news, 0, $i).' ...';
+            return substr($sShortText, 0, $i).' ...';
         }
         else
         {
