@@ -71,7 +71,7 @@ class NewsCategoryTextSubscriber
         
         $oEvent->listen(
             'CeddyG\ClaraNews\Events\NewsCategory\BeforeDestroyEvent',
-            'CeddyG\ClaraNews\Listeners\NewsCategoryTextSubscriber@deletes'
+            'CeddyG\ClaraNews\Listeners\NewsCategoryTextSubscriber@delete'
         );
     }
 }
