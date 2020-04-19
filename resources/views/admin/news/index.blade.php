@@ -26,7 +26,7 @@
                 <tr>
                     <th>ID</th>
                     <th>{{ __('clara-news::news.title_news') }}</th>
-					<th>{{ __('clara-news::news.url_news') }}</th>
+                    <th>{{ __('clara-news::news.url_news') }}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -52,7 +52,10 @@
             $('#tab-admin').DataTable({
                 serverSide: true,
                 ajax: {
-                    'url': '{{ route('admin.news.index.ajax') }}'
+                    'url': '{{ route('admin.news.index.ajax') }}',
+                    headers: {
+                        "Authorization": "Bearer {{ Sentinel::getUser()->api_token }}"
+                    }
                 },
                 columns: [
                     { 'data': 'id_news' },

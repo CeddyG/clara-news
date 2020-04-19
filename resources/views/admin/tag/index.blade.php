@@ -51,7 +51,10 @@
             $('#tab-admin').DataTable({
                 serverSide: true,
                 ajax: {
-                    'url': '{{ route('admin.tag.index.ajax') }}'
+                    'url': '{{ route('admin.tag.index.ajax') }}',
+                    headers: {
+                        "Authorization": "Bearer {{ Sentinel::getUser()->api_token }}"
+                    }
                 },
                 columns: [
                     { 'data': 'id_tag' },

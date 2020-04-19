@@ -52,7 +52,10 @@
             $('#tab-admin').DataTable({
                 serverSide: true,
                 ajax: {
-                    'url': '{{ route('admin.news-category.index.ajax') }}'
+                    'url': '{{ route('admin.news-category.index.ajax') }}',
+                    headers: {
+                        "Authorization": "Bearer {{ Sentinel::getUser()->api_token }}"
+                    }
                 },
                 columns: [
                     { 'data': 'id_news_category' },
