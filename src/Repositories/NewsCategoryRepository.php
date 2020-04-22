@@ -52,12 +52,6 @@ class NewsCategoryRepository extends QueryBuilderRepository
     {
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsCategoryTextRepository', 'fk_news_category', [['fk_lang', '=', ClaraLang::getIdByCode(App::getLocale())]]);
     }
-
-
-    public function setSlugNewsCategoryAttribute($aInputs)
-    {
-        return str_slug($aInputs['slug_news_category']);
-    }
     
     public function getTitleNewsCategoryAttribute($oItem)
     {

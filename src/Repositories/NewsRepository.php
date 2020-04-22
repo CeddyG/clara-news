@@ -19,16 +19,16 @@ class NewsRepository extends QueryBuilderRepository
         
     protected $aRelations = [
         'news_category',
-		'users',
-		'tag',
-		'news_text',
-		'news_trans'
+        'users',
+        'tag',
+        'news_text',
+        'news_trans'
     ];
 
     protected $aFillable = [
         'fk_news_category',
-		'fk_users',
-		'url_image_news',
+        'fk_users',
+        'url_image_news',
         'created_at'
     ];
     
@@ -75,15 +75,6 @@ class NewsRepository extends QueryBuilderRepository
     public function news_trans()
     {
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsTextRepository', 'fk_news', [['fk_lang', '=', ClaraLang::getIdByCode(App::getLocale())]]);
-    }
-    
-    /**
-     * Custom setter 
-     */
-    
-    public function setUrlNewsAttribute($aInputs)
-    {
-        return str_slug($aInputs['url_news']);
     }
     
     /**

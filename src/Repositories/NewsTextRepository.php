@@ -4,6 +4,8 @@ namespace CeddyG\ClaraNews\Repositories;
 
 use CeddyG\QueryBuilderRepository\QueryBuilderRepository;
 
+use Str;
+
 class NewsTextRepository extends QueryBuilderRepository
 {
     protected $sTable = 'news_text';
@@ -73,7 +75,7 @@ class NewsTextRepository extends QueryBuilderRepository
     
     public function setUrlNewsAttribute($aInputs)
     {
-        return str_slug($aInputs['url_news']);
+        return Str::slug($aInputs['url_news']);
     }
 
 
