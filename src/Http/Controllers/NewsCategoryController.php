@@ -50,7 +50,7 @@ class NewsCategoryController extends Controller
             
             $oNews = $oNews->sortByDesc('created_at');
             
-            $sBreadCrumbsTitle = $oCategory->name_news_category;
+            $sBreadCrumbsTitle = $oCategory->title_news_category;
             
             return view('clara-news::index', compact('oNews', 'sBreadCrumbsTitle'));
         }

@@ -89,7 +89,7 @@ class NewsServiceProvider extends ServiceProvider
         {
             $oCategoryRepository    = new NewsCategoryRepository();
             $oCategories            = $oCategoryRepository
-                ->all(['name_news_category', 'slug_news_category']);
+                ->all(['title_news_category', 'news_category_trans.slug_news_category']);
             
             $view->with('oCategories', $oCategories);
         });
@@ -100,7 +100,7 @@ class NewsServiceProvider extends ServiceProvider
         View::composer('clara-news::partials.last-news', function($view)
         {
             $oRepository    = new NewsRepository();
-            $oLastNews            = $oRepository
+            $oLastNews      = $oRepository
                 ->getFillFromView('clara-news::partials.last-news')
                 ->orderBy('created_at', 'desc')
                 ->limit(0, 3)
