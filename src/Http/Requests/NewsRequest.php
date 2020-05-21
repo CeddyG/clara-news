@@ -42,6 +42,7 @@ class NewsRequest extends FormRequest
             'fk_news_category' => 'required|numeric',
             'fk_users' => 'numeric',
             'url_image_news' => 'string|max:255|nullable',
+            'enable_news' => 'numeric',
             'created_at' => 'string',
             'updated_at' => 'string'
         ];

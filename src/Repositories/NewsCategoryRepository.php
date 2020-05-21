@@ -17,6 +17,7 @@ class NewsCategoryRepository extends QueryBuilderRepository
     
     protected $aRelations = [
         'news',
+        'news_active',
         'news_category_text',
         'news_category_trans'
     ];
@@ -41,6 +42,11 @@ class NewsCategoryRepository extends QueryBuilderRepository
     public function news()
     {
         return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsRepository', 'fk_news_category');
+    }
+    
+    public function news_active()
+    {
+        return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsRepository', 'fk_news_category', [['enable_news', '=', 1]]);
     }
 
     public function news_category_text()

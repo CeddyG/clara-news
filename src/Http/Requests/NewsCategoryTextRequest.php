@@ -27,8 +27,8 @@ class NewsCategoryTextRequest extends FormRequest
             'id_news_category_text' => 'numeric',
             'fk_news_category' => 'numeric',
             'fk_lang' => 'numeric',
-            'name_news_category' => 'string|max:45',
-            'slug_news_category' => 'string|max:45',
+            'name_news_category' => 'string|max:255',
+            'slug_news_category' => 'string|max:255',
             'created_at' => 'string',
             'updated_at' => 'string'
         ];

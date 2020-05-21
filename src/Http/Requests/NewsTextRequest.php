@@ -27,9 +27,11 @@ class NewsTextRequest extends FormRequest
             'id_news_text' => 'numeric',
             'fk_news' => 'numeric',
             'fk_lang' => 'numeric',
-            'title_news' => 'string|max:90',
+            'title_news' => 'string|max:255',
             'url_news' => 'string|max:255',
             'text_news' => '',
+            'title_meta_news' => 'string|max:255|nullable',
+            'description_meta_news' => '',
             'created_at' => 'string',
             'updated_at' => 'string'
         ];

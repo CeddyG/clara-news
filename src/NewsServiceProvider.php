@@ -11,6 +11,7 @@ use CeddyG\ClaraNews\Listeners\NewsTextSubscriber;
 use CeddyG\ClaraNews\Listeners\NewsCategoryTextSubscriber;
 use CeddyG\ClaraNews\Repositories\NewsRepository;
 use CeddyG\ClaraNews\Repositories\NewsCategoryRepository;
+use CeddyG\ClaraNews\Repositories\TagRepository;
 
 /**
  * Description of EntityServiceProvider
@@ -33,6 +34,7 @@ class NewsServiceProvider extends ServiceProvider
         
         $this->buildCategoriesPartial();
         $this->buildLastNewsPartial();
+        $this->buildTagsPartial();
         
         Event::subscribe(NewsSubscriber::class);
         Event::subscribe(TagTextSubscriber::class);
@@ -95,6 +97,18 @@ class NewsServiceProvider extends ServiceProvider
         });
     }
     
+    private function buildTagsPartial()
+    {
+        View::composer('clara-news::partials.tags', function($view)
+        {
+            $oTagRepository     = new TagRepository();
+            $oTags              = $oTagRepository
+                ->all(['id_tag', 'title_tag']);
+            
+            $view->with('oTags', $oTags);
+        });
+    }
+    
     private function buildLastNewsPartial()
     {
         View::composer('clara-news::partials.last-news', function($view)
@@ -104,7 +118,7 @@ class NewsServiceProvider extends ServiceProvider
                 ->getFillFromView('clara-news::partials.last-news')
                 ->orderBy('created_at', 'desc')
                 ->limit(0, 3)
-                ->all();
+                ->findByField('enable_news', 1);
             
             $view->with('oLastNews', $oLastNews);
         });

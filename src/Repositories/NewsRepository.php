@@ -29,9 +29,10 @@ class NewsRepository extends QueryBuilderRepository
         'fk_news_category',
         'fk_users',
         'url_image_news',
+        'enable_news',
         'created_at'
     ];
-    
+
     /**
      * List of the customs attributes.
      * 

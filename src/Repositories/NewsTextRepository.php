@@ -23,7 +23,14 @@ class NewsTextRepository extends QueryBuilderRepository
         'fk_lang',
         'title_news',
         'url_news',
-        'text_news'
+        'text_news',
+        'title_meta_news',
+        'description_meta_news',
+        'token_preview_news'
+    ];
+    
+    protected $aDefaultCreate = [
+        'token_preview_news'
     ];
     
     /**
@@ -77,6 +84,9 @@ class NewsTextRepository extends QueryBuilderRepository
     {
         return Str::slug($aInputs['url_news']);
     }
-
-
+    
+    public function setTokenPreviewNewsAttribute($aInputs)
+    {
+        return Str::random(60);
+    }
 }

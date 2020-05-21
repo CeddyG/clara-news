@@ -5,6 +5,12 @@
     {!! Html::style('bower_components/select2/dist/css/select2.min.css') !!}
 
     <style>
+        .view-action
+        {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+        
         .select2
         {
             width: 100% !important
@@ -21,13 +27,40 @@
         }
     </style>
     
+    <!-- YesNoBtn -->
+    {!! Html::style('adminlte/css/alt/yesno-btn.css') !!}
+    
     @include('clara-library::admin.partials.css')
 @stop
 
 @section('content')
     <div class="row">
         <div class="col-sm-6">
-            <br>
+            @if(isset($oItem))
+                <div class="view-action">
+                    Voir la version 
+                    <div class="btn-group">
+                        <a class="btn btn-info" href="{{ url('news/'.$oItem->news_text->first()->token_preview_news) }}" target="_blank">
+                            {{ array_values(ClaraLang::getActiveLang())[0] }}
+                        </a>
+                        @if (count(ClaraLang::getActiveLang()) > 0)
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            @foreach (ClaraLang::getActiveLang() as $iIdLang => $sLang)
+                                @if ($loop->first)
+                                    @continue
+                                @endif
+
+                                <li><a href="{{ url('news/'.$oItem->news_text->firstWhere('fk_lang', $iIdLang)->token_preview_news) }}" target="_blank">{{ $sLang }}</a></li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </div>
+                </div>
+            @endif
             <div class="box box-info">	
                 <div class="box-header with-border">
                     @if(isset($oItem))
@@ -36,7 +69,7 @@
                         <h3 class="box-title">Ajouter</h3>
                     @endif
                 </div>
-                <div class="box-body"> 
+                <div class="box-body">
                     @if(isset($oItem))
                         @php $oItem->news_text = $oItem->news_text->keyBy('fk_lang')->toArray() @endphp
                         
@@ -88,6 +121,7 @@
                         @endif
 
                         {!! BootForm::viewTabPane('clara-news::admin.news.text', ClaraLang::getActiveLang()) !!}
+                        {!! BootForm::yesNo(__('clara-news::news.enable_news'), 'enable_news') !!}
                         
                         {!! BootForm::text(__('clara-news::news.url_image_news'), 'url_image_news')
 							->class('form-control fileinput-element') !!}
@@ -110,7 +144,7 @@
     <!-- Select 2 -->
     {!! Html::script('bower_components/select2/dist/js/select2.full.min.js') !!}
     
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
             $('.select2').wrap('<div class="input-group input-group-select2"></div>');
             $( ".input-group-select2" ).each(function () {
@@ -152,7 +186,7 @@
                 },
                 them: 'bootstrap'
             });
-        } );
+        });
     </script> 
     
     @include('clara-library::admin.partials.script')
