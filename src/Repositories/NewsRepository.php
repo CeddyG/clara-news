@@ -20,6 +20,7 @@ class NewsRepository extends QueryBuilderRepository
     protected $aRelations = [
         'news_category',
         'users',
+        'news_comment',
         'tag',
         'news_text',
         'news_trans'
@@ -61,6 +62,11 @@ class NewsRepository extends QueryBuilderRepository
     public function users()
     {
         return $this->belongsTo('CeddyG\ClaraSentinel\Repositories\UserRepository', 'fk_users');
+    }
+    
+    public function news_comment()
+    {
+        return $this->hasMany('CeddyG\ClaraNews\Repositories\NewsCommentRepository', 'fk_news');
     }
 
     public function tag()

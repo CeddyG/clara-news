@@ -34,9 +34,9 @@
 @stop
 
 @section('content')
+    @if(isset($oItem))
     <div class="row">
         <div class="col-sm-6">
-            @if(isset($oItem))
                 <div class="view-action">
                     Voir la version 
                     <div class="btn-group">
@@ -60,7 +60,12 @@
                         @endif
                     </div>
                 </div>
-            @endif
+        </div>
+    </div>
+    @endif
+    
+    <div class="row">
+        <div class="col-sm-6">
             <div class="box box-info">	
                 <div class="box-header with-border">
                     @if(isset($oItem))
@@ -135,6 +140,32 @@
                     <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
             </a>
         </div>
+        
+        @if(isset($oItem) && !is_array($oItem->news_comment))
+        <div class="col-sm-6">
+            <div class="box box-info">	
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ __('clara-news::news-comment.news_comment') }}</h3>
+                </div>
+                <div class="box-body">
+                    @foreach ($oItem->news_comment as $oComment)
+                    <div class="post">
+                        <div class="user-block">
+                              <span class="username">
+                                <span>{{ $oComment->name_news_comment }}</span>
+                              </span>
+                            <span class="description"><a href="mailto:{{ $oComment->mail_news_comment }}">{{ $oComment->mail_news_comment }}</a> - {{ $oComment->created_at }}</span>
+                        </div>
+                        <!-- /.user-block -->
+                        <p>
+                            {{ $oComment->text_news_comment }}
+                        </p>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 
     @include('clara-library::admin.partials.modal')

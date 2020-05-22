@@ -7,6 +7,9 @@ Route::get('news', 'CeddyG\ClaraNews\Http\Controllers\NewsController@index')
 Route::get('news/{slug}', 'CeddyG\ClaraNews\Http\Controllers\NewsController@show')
     ->middleware(config('clara.news.route.web.middleware'));
 
+Route::post('news-comment/{slug}', 'CeddyG\ClaraNews\Http\Controllers\NewsCommentController@store')
+    ->middleware(config('clara.news.route.web.middleware'));
+
 Route::group(['prefix' => config('clara.news.route.web-admin.prefix'), 'middleware' => config('clara.news.route.web-admin.middleware')], function()
 {
     Route::resource('news', 'CeddyG\ClaraNews\Http\Controllers\Admin\NewsController', ['names' => 'admin.news']);
