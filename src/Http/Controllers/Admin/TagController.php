@@ -33,6 +33,8 @@ class TagController extends ContentManagerController
      */
     public function edit($id, Request $oRequest)
     {
+        $this->oRepository->setTransformCustomAttribute(false);
+        
         if (!$oRequest->is('api/*'))
         {
             $oItem = $this->oRepository
